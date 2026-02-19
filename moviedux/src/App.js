@@ -2,6 +2,8 @@ import logo from './logo.svg';
 import './App.css';
 import './styles.css'
 import Header from './components/Header';
+import Footer from './components/Footer';
+import MoviesGrid from './components/MoviesGrid';
 
 function App() {
   return (
@@ -9,11 +11,9 @@ function App() {
 
             <div  className='container'>
               <Header />
+              <MoviesGrid />
               </div>
-
-      <footer className="footer">
-            <p className='footer'>Copyright &copy; 2024 Moviedux. All rights reserved.</p>
-      </footer>
+              <Footer/>
     </div>
   );
 }
