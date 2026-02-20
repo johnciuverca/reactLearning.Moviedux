@@ -1,36 +1,45 @@
 import React, {useState, useEffect} from "react";
 import '../styles.css';
+import MoviesCard from "./MovieCard";
 
 export default function MoviesGrid() {
 
       const [movies, setMovies] = useState([]);
+      const[searchTerm, setSearchTerm] = useState('');
 
       const m = ["a", "b", "c"];
       
       useEffect(() => {
-
             fetch("movies.json")
             .then(response => response.json())
             .then(data => setMovies(data));
-            
       }, []);
 
-      return(
-            <div className="movies-grid">
-                  
-                  {
-                        movies.map(movie => (
-                              <div key={movie.id} className="movie-card">
-                                    <img src={`images/${movie.image}`} alt={movie.title}/>
-                                    <div className="movie-card-info">
-                                          <h3 className="movie-card-title">{movie.title}</h3>
-                                          <p className="movie-card-genre">{movie.genre}</p>
-                                          <p className="movie-card-rating">{movie.rating}</p>
-                                    </div>
-                              </div>
-                        ))
-                  }
+      const handleSearchChange = (e) => {
+          setSearchTerm(e.target.value);
+      }
 
-             </div>
+      const filteredMovies = movies.filter(movie =>
+            movie.title.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+
+      return(
+            <div>
+                  <input 
+                        className="search-input"
+                        type="text" 
+                        placeholder="Search movies..."
+                        value={searchTerm}
+                        onChange={handleSearchChange}
+                  />
+                  <div className="movies-grid">
+                   {
+                        filteredMovies.map(movie => (
+                              <MoviesCard key={movie.id} movie={movie}/>
+                        ))
+                     }
+                   </div>     
+            </div>
+           
       );
 } 
