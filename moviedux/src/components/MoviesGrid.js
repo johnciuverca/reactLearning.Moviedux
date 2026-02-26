@@ -6,8 +6,6 @@ export default function MoviesGrid() {
 
       const [movies, setMovies] = useState([]);
       const[searchTerm, setSearchTerm] = useState('');
-
-      const m = ["a", "b", "c"];
       
       useEffect(() => {
             fetch("movies.json")
