@@ -16,10 +16,10 @@ export default function Watchlist({ movies, watchlist, toggleWatchlist }) {
                                 movie={movie} 
                                 toggleWatchlist={toggleWatchlist} 
                                 isWatchlisted={true} 
-                                ></MovieCard>
+                            ></MovieCard>
                         )
-                        })
-                    }
+                    })
+                }
                 </div>
             </div>
       );
